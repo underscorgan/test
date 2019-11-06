@@ -1,0 +1,35 @@
+apiVersion: v1
+entries:
+  puppetserver:
+  - apiVersion: v1
+    appVersion: 6.6.0
+    created: "2019-11-06T15:21:47.101744-08:00"
+    description: Puppet automates the delivery and operation of software.
+    digest: 56967e30edbefdd00235eb21783a2eee52b580bf74f8e72173dd8ce86dc596b3
+    engine: gotpl
+    home: https://puppet.com/
+    icon: https://secure.gravatar.com/avatar/fdd009b7c1ec96e088b389f773e87aec.jpg?s=80&r=g&d=mm
+    keywords:
+    - puppet
+    - puppetserver
+    - automation
+    - iac
+    - infrastructure
+    - cm
+    - ci
+    - cd
+    maintainers:
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: scottcressi@gmail.com
+      name: scottcressi
+    - email: morgan@puppet.com
+      name: underscorgan
+    name: puppetserver
+    sources:
+    - https://github.com/puppetlabs/pupperware/
+    tillerVersion: '>=2.8.0'
+    urls:
+    - https://underscorgan.github.io/test/puppetserver-0.2.4.tgz
+    version: 0.2.4
+generated: "2019-11-06T15:21:47.100744-08:00"
