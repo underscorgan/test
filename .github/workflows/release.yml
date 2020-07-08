@@ -16,7 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.moveToOldReleases == 'true' }}
     steps:
-      - run: echo "gonna move move move"
+      - uses: chrislennon/action-aws-cli@v1.1
+      - run: |
+          file=`aws s3 ls "$AWS_S3_BUCKET" | grep -v "older" | cut -d ' ' -f 5-`
+          echo "gonna run aws s3 cp s3://$AWS_S3_BUCKET/$file 's3://$AWS_S3_BUCKET/older versions/$file'"
   testJob:
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +27,8 @@ jobs:
       - run: |
           echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
           wget ${{ github.event.inputs.artifactUrl }}
-          aws s3 ls "$AWS_S3_BUCKET" | grep -v "older" | cut -d' ' -f 5-
+          file=`ls`
+          echo "Gonna upload $file to s3://$AWS_S3_BUCKET/$file"
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
