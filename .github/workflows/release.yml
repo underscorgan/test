@@ -1,0 +1,24 @@
+name: publish release to s3
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL of artifact to upload'
+        required: true
+      moveToOldReleases:
+        description: 'Whether or not to move current release to old releases'
+        required: true
+        default: 'true'
+
+jobs:
+  testJob:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+        echo "Gonna upload from: ${{ github.event.inputs.url }}"
+        if [ "${{ github.event.inputs.moveToOldReleases }}" == 'true' ]; then
+          echo "Gonna move to old releases"
+        else
+          echo "Leave old releases where they are"
+        fi
