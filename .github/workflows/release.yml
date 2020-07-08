@@ -25,7 +25,7 @@ jobs:
         if: ${{ github.event.inputs.moveToOldReleases == 'true' }}
         run: |
           file=`aws s3 ls "$AWS_S3_BUCKET" | grep -v "older" | cut -d ' ' -f 5-`
-          aws s3 cp s3://$AWS_S3_BUCKET/$file "s3://$AWS_S3_BUCKET/older versions/$file"
+          aws s3 cp --acl public-read s3://$AWS_S3_BUCKET/$file "s3://$AWS_S3_BUCKET/older versions/$file"
       - run: |
           echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
           wget ${{ github.event.inputs.artifactUrl }}
