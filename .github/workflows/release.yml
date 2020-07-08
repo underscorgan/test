@@ -20,6 +20,4 @@ jobs:
   testJob:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-        echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
-        echo "done"
+      - run: echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
