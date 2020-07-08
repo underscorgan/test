@@ -3,7 +3,7 @@ name: publish release to s3
 on:
   workflow_dispatch:
     inputs:
-      url:
+      artifactUrl:
         description: 'URL of artifact to upload'
         required: true
       moveToOldReleases:
@@ -21,4 +21,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-        echo "Gonna upload from: ${{ github.event.inputs.url }}"
+        echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
+        echo "done"
