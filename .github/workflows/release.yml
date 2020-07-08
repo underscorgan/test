@@ -22,4 +22,5 @@ jobs:
     steps:
       - run: |
           echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
-          echo "and done"
+          wget ${{ github.event.inputs.artifactUrl }}
+          ls -l
