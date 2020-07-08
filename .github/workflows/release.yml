@@ -14,7 +14,7 @@ on:
 jobs:
   testJob:
     env:
-      AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      AWS_S3_BUCKET: compliance-builds
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
@@ -25,9 +25,9 @@ jobs:
         if: ${{ github.event.inputs.moveToOldReleases == 'true' }}
         run: |
           file=`aws s3 ls "$AWS_S3_BUCKET" | grep -v "older" | cut -d ' ' -f 5-`
-          aws s3 cp --acl public-read s3://$AWS_S3_BUCKET/$file "s3://$AWS_S3_BUCKET/older versions/$file"
+          aws s3 cp --acl public-read "s3://$AWS_S3_BUCKET/$file" "s3://$AWS_S3_BUCKET/older versions/$file"
+          #aws s3 rm "s3://$AWS_S3_BUCKET/$file"
       - run: |
-          echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
           wget ${{ github.event.inputs.artifactUrl }}
           file=`ls`
-          echo "Gonna upload $file to s3://$AWS_S3_BUCKET/$file"
+          aws s3 cp --acl public-read "$file" "s3://$AWS_S3_BUCKET/$file"
