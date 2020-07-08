@@ -16,8 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.moveToOldReleases == 'true' }}
     steps:
-      - run: |
-        "gonna move move move"
+      - run: echo "gonna move move move"
   testJob:
     runs-on: ubuntu-latest
     steps:
