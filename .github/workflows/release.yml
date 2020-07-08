@@ -6,8 +6,17 @@ on:
       artifactUrl:
         description: 'URL of artifact to upload'
         required: true
+      moveToOldReleases:
+        description: 'Whether or not to move current release to old releases'
+        required: true
+        default: 'true'
 
 jobs:
+  testMove:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.moveToOldReleases == 'true' }}
+    steps:
+      - run: echo "gonna move move move"
   testJob:
     runs-on: ubuntu-latest
     steps:
