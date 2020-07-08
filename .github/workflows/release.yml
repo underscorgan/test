@@ -19,6 +19,5 @@ jobs:
         echo "Gonna upload from: ${{ github.event.inputs.url }}"
         if [ "${{ github.event.inputs.moveToOldReleases }}" == 'true' ]; then
           echo "Gonna move to old releases"
-        else
-          echo "Leave old releases where they are"
         fi
+        echo "and done"
