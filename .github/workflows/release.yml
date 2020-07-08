@@ -24,7 +24,7 @@ jobs:
       - run: |
           echo "Gonna upload from: ${{ github.event.inputs.artifactUrl }}"
           wget ${{ github.event.inputs.artifactUrl }}
-          aws s3 ls "$AWS_S3_BUCKET"
+          aws s3 ls "$AWS_S3_BUCKET" | grep -v "older" | cut -d' ' -f 5-
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
