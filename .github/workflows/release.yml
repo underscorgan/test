@@ -12,12 +12,14 @@ on:
         default: 'true'
 
 jobs:
+  testMove:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.moveToOldReleases == 'true' }}
+    steps:
+      - run: |
+        "gonna move move move"
   testJob:
     runs-on: ubuntu-latest
     steps:
       - run: |
         echo "Gonna upload from: ${{ github.event.inputs.url }}"
-        if [ "${{ github.event.inputs.moveToOldReleases }}" == 'true' ]; then
-          echo "Gonna move to old releases"
-        fi
-        echo "and done"
